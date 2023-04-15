@@ -1,0 +1,39 @@
+
+
+.recommendation-box {
+    display: flex; /* use flexbox layout */
+    align-items: center; /* vertically center the items */
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    min-width: 20%;
+    max-width: 30%;
+    max-height: 150px;
+    box-shadow: 10px -2px 20px 2px rgb(0 0 0 / 30%);
+    color: #fff;
+    background-color: #333;
+    margin: 20px auto 0 20px ;
+  }
+  
+  .workoutLogo {
+    margin-right: 20px; /* add some space between the image and the text */
+    width: 100px; /* set the width of the image */
+    height: 100px; /* set the height of the image */
+    border-radius: 50px;
+    }
+  
+  .exercise-name {
+    margin: 0; /* remove any default margin to avoid unwanted spacing */
+    font-size: 1.2em; /* adjust the font size as needed */
+  }
+  
+  .exercise-description {
+    margin: 0;
+    font-size: 0.9em; /* adjust the font size as needed */
+  }
+  
+  .titlecard{
+    margin: 0;
+    font-size: 1.3em;
+    text-underline-position: auto;
+  }
