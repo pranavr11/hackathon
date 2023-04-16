@@ -1,0 +1,22 @@
+
+
+.recommendation-box {
+    display: flex; /* use flexbox layout */
+    align-items: center; /* vertically center the items */
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 500px;
+    max-height: 150px;
+    box-shadow: 10px -2px 20px 2px rgb(0 0 0 / 30%);
+    color: #fff;
+    background-color: #333;
+    /* margin: 20px auto 0 20px ; */
+  }
+  
+
+  
+  .exercise-name {
+    margin: 0; /* remove any default margin to avoid unwanted spacing */
+    font-size: 1.2em; /* adjust the font size as needed */
+  }
+  

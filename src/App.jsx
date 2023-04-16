@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Recommendation from './Recommendation'
-import Weather from './Weather'
+import React, { useEffect, useState } from 'react';
+import Recommendation from './Recommendation';
+import Food from './food';
+import Weather from './Weather';
+import Chatbot from './Chatbot'
+import { Auth0Provider } from "@auth0/auth0-react";
 
 const weatherData = {
   city: 'Mars',
-  weather: [{
-    description: 'Humid',
-    icon: '01d',
-  }],
+  weather: [
+    {
+      description: 'Humid',
+      icon: '01d',
+    },
+  ],
   main: {
     temp: 25,
     feels_like: 28,
@@ -23,36 +25,43 @@ const weatherData = {
 };
 
 function App() {
-  
   const [backendData, setBackendData] = useState([{}]);
-  
+  const [foods, setFoods] = useState([]);
+
   useEffect(() => {
-    fetch("http://localhost:5000/api").then(
-      response => response.json()
-    ).then(
-      data => {
-        setBackendData(data)
-      }
-    )
-  }, [])
+    fetch('http://localhost:5000/api')
+      .then((response) => response.json())
+      .then((data) => {
+        setBackendData(data);
+      });
+  }, []);
+
+  const addFood = () => {
+    setFoods([...foods, <Food key={foods.length} name={`food${foods.length}`} />]);
+  };
 
   return (
     <div className="App">
-      <Recommendation />
+      <h1 className="TITLE">MARSFIT</h1>
       <div>
-        {(typeof backendData.users === "undefined") ? (
+      <Weather data={weatherData} />
+      <Chatbot />
+      </div>
+      <Recommendation />
+      <div className="foodcontainer">
+        {typeof backendData.users === 'undefined' ? (
           <p>Loading...</p>
         ) : (
-          backendData.users.map((user, i) => (
-            <p key={i}>{user}</p>
-          ))
-        )
-      }
+          backendData.users.map((user, i) => <Food key={i} name={user} />)
+        )}
+        {foods}
+        <button onClick={addFood}>Add Food</button>
       </div>
-      <Weather data={weatherData} />
+
+      
       
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
