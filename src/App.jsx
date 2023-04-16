@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -24,11 +24,33 @@ const weatherData = {
 
 function App() {
   
+  const [backendData, setBackendData] = useState([{}]);
+  
+  useEffect(() => {
+    fetch("http://localhost:5000/api").then(
+      response => response.json()
+    ).then(
+      data => {
+        setBackendData(data)
+      }
+    )
+  }, [])
 
   return (
     <div className="App">
       <Recommendation />
+      <div>
+        {(typeof backendData.users === "undefined") ? (
+          <p>Loading...</p>
+        ) : (
+          backendData.users.map((user, i) => (
+            <p key={i}>{user}</p>
+          ))
+        )
+      }
+      </div>
       <Weather data={weatherData} />
+      
     </div>
   )
 }
